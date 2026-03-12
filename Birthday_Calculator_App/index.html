@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            display: flex;
+justify-content: center;
+align-items: center;
+        }
+        .container{
+display: grid;
+grid-template-rows: repeat();
+
+justify-content: center;
+align-items: center;
+background-color:white ;
+box-shadow :2px 2px 5px gray;
+padding: 50px 70px;
+margin-top: 50px;
+
+        }
+
+        .container label input{
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            box-shadow:inset 1px 1px 3px gray;
+            width: 250px;
+        }
+        .container label button{
+background-color:rgb(233, 203, 129) ;
+border: none;
+padding: 10px 20px;
+border-radius: 15px;
+box-shadow: inset 1px 1px 3px gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+    <form action="" class="container" onsubmit="birthday(); return false">
+            <h2>Birthday_Calculator_App</h2><br>
+
+        <label for="birth">
+           Birth_Date <br> <input type="date" name="" id="birth"><br><br>
+            <button>click</button>
+        </label>
+ <p id="result"></p>
+    </form>
+    </div>
+<script src="index.js"></script>
+</body>
+</html>

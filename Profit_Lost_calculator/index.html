@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 15px;
+            padding: 0px 20px;
+            color: white;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .orange {
+
+            background-color: orange;
+        }
+
+        .form {
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            grid: 15px;
+            background-color: white;
+            box-shadow: 2px 2px 5px gray;
+            width: 300px;
+            padding: 20px;
+            margin-top: 45px;
+        }
+
+        .form-container label input {
+            border-radius: 15px;
+            padding: 8px 5px;
+            width: 280px;
+            background-color: transparent;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 15px;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        .list_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 400px;
+            margin-top: 35px;
+            border-radius: 15px;
+            padding: 0px 15px;
+            color: white;
+        }
+
+        .list_container {
+            display: grid;
+            justify-content: center;
+            grid-auto-flow: row;
+            align-items: center;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card-container">
+        <div class="card red">
+            <h5>total expense</h5>
+            <h1 id="totalexpense">0</h1>
+        </div>
+        <div class="card green">
+            <h5>total Income</h5>
+            <h1 id="totalincome">0</h1>
+        </div>
+        <div class="card orange">
+            <h5>Total Profit</h5>
+            <h1 id="totalprofit">0</h1>
+        </div>
+    </div>
+    <div class="form">
+        <form action="" onsubmit="calculator(); return false" class="form-container">
+            <h2>Profit_Lost_Calculator</h2>
+            <label for="">
+                Items_Name <br><input type="text" name="" id="itemName">
+            </label><br>
+            <label for="">
+                Items_Amount
+                <br><input type="number" name="" id="itemAmount">
+            </label><br>
+            <button class="btn">Add</button>
+        </form>
+    </div>
+    <div id="list" class="list_container">
+        <div class="list_item">
+
+        </div>
+    </div>
+
+
+    <script>
+        let totalexpense = 0;
+        let totalincome = 0;
+        let totalprofit = 0;
+        let items = [];
+        function calculator() {
+            let itemName = document.getElementById("itemName").value;
+            let itemAmount = Number(document.getElementById("itemAmount").value);
+            let itemobj = {};
+            if (itemAmount < 0) {
+                let filteramount = -(itemAmount)
+                itemobj = {
+                    name: itemName,
+                    itemAmount: filteramount,
+                    type: "loss"
+                }
+                totalexpense += filteramount
+            } else {
+                itemobj = {
+                    name: itemName,
+                    itemAmount: itemAmount,
+                    type: "Profit"
+                }
+                totalincome += itemAmount
+            }
+            items.push(itemobj);
+            totalprofit = totalincome - totalexpense;
+            printdata();
+        }
+
+        function printdata() {
+            document.getElementById("totalexpense").innerText = totalexpense;
+            document.getElementById("totalincome").innerText = totalincome;
+            document.getElementById("totalprofit").innerText = totalprofit;
+            let listitems = ""
+
+            for (let i = 0; i < items.length; i++) {
+                let extraclass;
+                if (items[i].type == "loss") {
+                    extraclass = "red"
+                } else {
+                    extraclass = "green"
+                }
+                listitems += `
+        <div class="list_item ${extraclass}">
+    <h4>${items[i].name}</h4>
+    <h2>${items[i].itemAmount}</h2>
+</div>`
+
+            }
+            document.getElementById("list").innerHTML = listitems;
+
+        }
+    </script>
+</body>
+
+</html>

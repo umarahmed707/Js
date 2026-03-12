@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="" onsubmit="getform(); return false">
+            <label for="">
+              Full_Name <br><input type="text" name="" id="fullName">
+            </label><br>
+            <label for="">
+               Father_Name <br><input type="text" name="" id="fatherName">
+            </label><br>
+             <label for="">
+               Student_ID <br><input type="text" name="" id="studentId">
+            </label><br>
+             <label for="">
+               Course_Name <br><input type="text" name="" id="courseName">
+            </label><br>
+             <label for="">
+               Batch <br><input type="text" name="" id="batch">
+            </label><br>
+            <button>Submit</button>
+        </form>
+    </div>
+    <script>
+        function Student(fullName, fatherName, studentId, courseName, batch){
+            this.fullName = fullName;
+            this.fatherName = fatherName;
+            this.studentId = studentId;
+            this.courseName = courseName;
+            this.batch = batch;
+            }
+
+            let students= [];
+            function getform(){
+                let fullName = document.getElementById("fullName").value;
+                let fatherName = document.getElementById("fatherName").value;
+                let studentId = document.getElementById("studentId").value;
+                let courseName = document.getElementById("courseName").value;
+                let batch = document.getElementById("batch").value;
+                let studentobj = new Student(fullName, fatherName ,studentId, courseName, batch);
+                students.push(studentobj);
+                console.log(studentobj);
+            }
+    </script>
+</body>
+</html>
